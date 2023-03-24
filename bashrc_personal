@@ -1,0 +1,191 @@
+PS1='\e[0;32m\u\e[0;31m@\h\e[m:\w\n\$ '
+
+shopt -s extglob
+
+# spelling
+shopt -s cdspell
+
+# local applications
+#export PATH=$HOME/Local/bin:$PATH
+export CDPATH=.:$HOME/Kuweta:$HOME/Kuweta/zksi-projects:$HOME
+
+# local applications (eg. from python)
+export PATH=$PATH:$HOME/.local/bin
+
+# local man pages
+export MANPATH=/home/jam/Local/share/man:$MANPATH
+
+# python environment
+export PYTHONSTARTUP=$HOME/.pythonstartup
+
+#
+# qcl
+#
+export PATH=$HOME/Local/qcl:$PATH
+
+# omnet++
+export PATH=$HOME/Local/omnetpp/bin:$PATH
+
+# TeX Live 2020 - updated on 11/04/2020
+# TeX Live 2022 - updated on 31/07/2022
+export TLVER=2022
+export PATH=/home/jam/Local/texlive/$TLVER/bin/x86_64-linux:$PATH
+export MANPATH=/home/jam/Local/texlive/$TLVER/texmf-dist/doc/man:$MANPATH
+export INFOPATH=/home/jam/Local/texlive/$TLVER/texmf-dist/doc/info:$INFOPATH
+
+#-------------------------------------------------------------------------------
+# local developement kits and libraries
+#-------------------------------------------------------------------------------
+
+#
+# Java
+#
+export JAVA_HOME=$HOME/Local/Java/current
+export PATH=$JAVA_HOME/bin:$PATH
+
+# ANTLR
+export CLASSPATH=".:/usr/local/lib/antlr-4.9.2-complete.jar:$CLASSPATH"
+alias antlr4='java -jar /usr/local/lib/antlr-4.9.2-complete.jar'
+alias grun='java org.antlr.v4.gui.TestRig'
+
+# StringTemplate
+export CLASSPATH=".:/usr/local/lib/ST-4.3.1.jar:$CLASSPATH"
+
+#
+# Julia
+#
+export PATH=$PATH:$HOME/Local/Julia/current/bin
+
+#
+# NetLogo
+#
+export PATH=/home/jam/Local/NetLogo/current/bin:$PATH
+export PATH=/home/jam/Local/NetLogo/current:$PATH
+
+#
+# AMPL
+#
+export PATH=/home/jam/Local/AMPL/ampl.linux-intel64:/home/jam/Local/AMPL/amplide:$PATH
+
+#
+# CPLEX
+#
+export PATH=/home/jam/Local/ILOG/CPLEX_Studio201/opl/oplide:$PATH
+export PATH=/home/jam/Local/ILOG/CPLEX_Studio201/cplex/bin/x86-64_linux:$PATH
+
+#
+# Android
+#
+export PATH=/home/jam/Android/Sdk/platform-tools:$PATH
+
+
+#-------------------------------------------------------------------------------
+# aliases
+#-------------------------------------------------------------------------------
+
+# ASCI B&W MC
+alias mc='mc -ba'
+
+# md for creating directories
+alias md='mkdir -p'
+
+# common commands
+alias p=python
+alias g='gvim --servername GVIM'
+alias gr='gvim --servername GVIM --remote-tab'
+
+#-------------------------------------------------------------------------------
+# local functions
+#-------------------------------------------------------------------------------
+
+# cd for go to dir with a given file
+function cdf () {
+  cd `dirname $1`
+}
+
+# make a dir and cd into it
+function mkd() {
+  mkdir -p "$@" && cd "$@"
+}
+
+# titlecase
+function titlecase() {
+  local j
+  for i in ${1,,} ; do 
+    j=${i~} 
+    echo -n $j" "
+  done
+  echo 
+}
+
+# default apps and their placement
+placeMyApps() {
+  wmctrl -r Firefox -e 0,800,100,1300,1000
+  wmctrl -r Thunderbird  -e 0,400,300,1600,1000
+  wmctrl -r Mousepad  -e 0,400,300,1600,1000
+  wmctrl -r Spyder -e 0,400,100,1800,1000
+  wmctrl -r gvim -e 0,50,50,1300,1000
+}
+
+#-------------------------------------------------------------------------------
+# Anaconda installation management
+#-------------------------------------------------------------------------------
+MYCONDA='miniconda3'
+updateConda() {
+  envs=`conda env list | grep ^[a-z] | awk '!/base/ {print $1}'`
+  echo "[INFO] Updating Anaconda environments:" $envs
+  for e in $envs; do
+    updateCondaEnv $e
+  done
+  updateCondaEnv 'base'
+}
+
+updateCondaEnv() {
+  if [ $1 = 'base' ]; then
+    echo "[INFO] Updating Anaconda base environment."
+    echo "[INFO] Command: conda update --prefix /home/jam/Local/$MYCONDA --all -y"
+    conda update --prefix /home/jam/Local/$MYCONDA --all -y
+ else
+    echo "[INFO] Updating Anaconda environment: $1."
+    echo "[INFO] Prefix: /home/jam/Local/$MYCONDA/envs/$1"
+    echo "[INFO] Command: conda update --prefix /home/jam/Local/$MYCONDA/envs/$1 --all -y"
+    conda update --prefix /home/jam/Local/$MYCONDA/envs/$1 --all -y
+  fi
+}
+
+cleanConda() {
+  conda clean --all -y
+}
+
+ca() {
+  conda activate ${1//.yml/} 
+}
+
+#-------------------------------------------------------------------------------
+# LaTeX project management 
+#-------------------------------------------------------------------------------
+
+# add LaTeX files to git
+addTeXpics() {
+  if [ -z $1 ]; then
+    echo "[Error] Please provide .tex file!"
+    echo "Nothing addded!"
+  else
+    lf=`basename $1 .tex`.log
+    fs=`cat $lf  | grep \<use | sed s/\<use\ //g | sed s/\>//g`
+    for f in $fs ; do 
+      echo "[INFO] Adding" $f
+      echo "git add -f $f"
+      git add -f $f
+    done
+  fi 
+}
+
+cleanTeXfiles() {
+  find . \( \
+    -iname \*.log -or -iname \*.toc -or -iname \*.aux -or -iname \*.out \
+    -or -iname \*.fls -or -iname \*.vrb -or -iname \*.fdb_latexmk \
+    -or -iname \*.blg -or -iname \*.nav -or -iname \*.snm -or -iname \*~ \
+    -or -iname \*.bak -or  -iname \*.synctex.gz -or -name *.spl \) \
+    -exec echo 'Deleting' {} \; -exec rm {} \;
+}

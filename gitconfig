@@ -1,0 +1,36 @@
+[user]
+	email = jarek@miszczak.eu
+	name = Jarek Miszczak
+[color]
+	ui = auto
+[alias]
+  st = status
+  ss = status --untracked-files=no -s
+  cm = commit -m
+  pl = pull
+  ps = push
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+  ls = log --pretty=format:'%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]' --decorate
+  mhist = log --pretty=format:'%h %ad | %s%d' --graph --date=short --since='1 month' --no-merges
+  r = reset
+  r1 = reset HEAD^
+  r2 = reset HEAD^^
+  rh = reset --hard
+  rh1 = reset HEAD^ --hard
+  rh2 = reset HEAD^^ --hard
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit
+[diff]
+	tool = meld
+[merge]
+	tool = meld
+[cola]
+	spellcheck = false
+[credential]
+	helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+[init]
+	defaultBranch = master
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
