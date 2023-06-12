@@ -121,7 +121,8 @@ function titlecase() {
 
 # default apps and their placement
 placeMyApps() {
-  wmctrl -r Firefox -e 0,800,100,1300,1000
+  # wmctrl -r Firefox -e 0,800,100,1300,1000
+  wmctrl -r Firefox -e 0,200,200,2000,1000;
   wmctrl -r Thunderbird  -e 0,400,300,1600,1000
   wmctrl -r Mousepad  -e 0,400,300,1600,1000
   wmctrl -r Spyder -e 0,400,100,1800,1000
