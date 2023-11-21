@@ -175,7 +175,7 @@ ae() {
 addTeXpics() {
   if [ -z $1 ]; then
     echo "[Error] Please provide .tex file!"
-    echo "Nothing addded!"
+    echo "Nothing added!"
   else
     lf=`basename $1 .tex`.log
     fs=`cat $lf  | grep \<use | sed s/\<use\ //g | sed s/\>//g`
@@ -200,4 +200,4 @@ cleanTeXfiles() {
 # Ubuntu/Debian package management
 #
 
-purgeRC=`apt purge `dpkg -l | grep ^rc | gawk '{print $2}'``
+purgeRC=`sudo apt purge `dpkg -l | grep ^rc | gawk '{print $2}'``
