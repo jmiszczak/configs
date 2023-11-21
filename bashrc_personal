@@ -29,7 +29,7 @@ export PATH=$HOME/Local/omnetpp/bin:$PATH
 # TeX Live 2020 - updated on 11/04/2020
 # TeX Live 2022 - updated on 31/07/2022
 # TeX Live 2023 - updated in 03/2023
-export TLVER=2023
+export TLVER=2022
 export PATH=/home/jam/Local/texlive/$TLVER/bin/x86_64-linux:$PATH
 export MANPATH=/home/jam/Local/texlive/$TLVER/texmf-dist/doc/man:$MANPATH
 export INFOPATH=/home/jam/Local/texlive/$TLVER/texmf-dist/doc/info:$INFOPATH
@@ -195,3 +195,9 @@ cleanTeXfiles() {
     -or -iname \*.bak -or  -iname \*.synctex.gz -or -name *.spl \) \
     -exec echo 'Deleting' {} \; -exec rm {} \;
 }
+
+#
+# Ubuntu/Debian package management
+#
+
+purgeRC=`apt purge `dpkg -l | grep ^rc | gawk '{print $2}'``
