@@ -199,5 +199,6 @@ cleanTeXfiles() {
 #
 # Ubuntu/Debian package management
 #
-
-purgeRC=`sudo apt purge `dpkg -l | grep ^rc | gawk '{print $2}'``
+function purgeRC() {
+  `sudo apt purge `dpkg -l | grep ^rc | gawk '{print $2}'``
+}
