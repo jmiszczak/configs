@@ -85,7 +85,7 @@ export PATH=/home/jam/Android/Sdk/platform-tools:$PATH
 #-------------------------------------------------------------------------------
 
 # ASCI B&W MC
-alias mc='mc -ba'
+#alias mc='mc -ba'
 
 # md for creating directories
 alias md='mkdir -p'
