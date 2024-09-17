@@ -61,7 +61,7 @@ export PATH=$PATH:$HOME/Local/Julia/current/bin
 #
 # NetLogo
 #
-export PATH=/home/jam/Local/NetLogo/current/bin:$PATH
+export PATH=/home/jam/Local/NetLogo/current:/home/jam/Local/NetLogo/current/bin:$PATH
 
 #
 # AMPL
