@@ -36,7 +36,7 @@ export MANPATH=/home/jam/Local/texlive/$TLVER/texmf-dist/doc/man:$MANPATH
 export INFOPATH=/home/jam/Local/texlive/$TLVER/texmf-dist/doc/info:$INFOPATH
 
 #-------------------------------------------------------------------------------
-# local developement kits and libraries
+# local development kits and libraries
 #-------------------------------------------------------------------------------
 
 #
