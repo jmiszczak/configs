@@ -30,7 +30,8 @@ export PATH=$HOME/Local/qcl:$PATH
 # TeX Live 2022 - updated on 31/07/2022
 # TeX Live 2023 - updated in 03/2023
 # TeX Live 2024 - installed on 14/08/2024
-export TLVER=2024
+# TeX Live 2025 - installed on 09/05/2025
+export TLVER=2025
 export PATH=/home/jam/Local/texlive/$TLVER/bin/x86_64-linux:$PATH
 export MANPATH=/home/jam/Local/texlive/$TLVER/texmf-dist/doc/man:$MANPATH
 export INFOPATH=/home/jam/Local/texlive/$TLVER/texmf-dist/doc/info:$INFOPATH
@@ -62,6 +63,12 @@ export PATH=$PATH:$HOME/Local/Julia/current/bin
 # NetLogo
 #
 export PATH=/home/jam/Local/NetLogo/current:/home/jam/Local/NetLogo/current/bin:$PATH
+#
+
+#
+# Rust
+#
+# . "$HOME/.cargo/env"
 
 #
 # AMPL
