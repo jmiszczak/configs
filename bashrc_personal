@@ -203,3 +203,9 @@ cleanTeXfiles() {
 function purgeRC() {
   sudo apt purge `dpkg -l | grep ^rc | gawk '{print $2}'`
 }
+
+
+# for experimenting with local OpenSSL instalation
+export OPENSSL_VERSION=3.5.0
+export LD_LIBRARY_PATH=$HOME/Local/openssl/$OPENSSL_VERSION/lib64:$LD_LIBRARY_PATH
+export PATH=$HOME/Local/openssl/$OPENSSL_VERSION/bin:$PATH
