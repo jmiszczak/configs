@@ -42,6 +42,12 @@ export INFOPATH=/home/jam/Local/texlive/$TLVER/texmf-dist/doc/info:$INFOPATH
 #-------------------------------------------------------------------------------
 
 #
+# .Net
+#
+export DOTNET_ROOT=$HOME/Local/dotnet
+export PATH=$PATH:${DOTNET_ROOT}
+
+#
 # Java
 #
 export JAVA_HOME=$HOME/Local/Java/current
