@@ -214,7 +214,7 @@ cleanTeXfiles() {
     -iname \*.log -or -iname \*.toc -or -iname \*.aux -or -iname \*.out \
     -or -iname \*.fls -or -iname \*.vrb -or -iname \*.fdb_latexmk \
     -or -iname \*.blg -or -iname \*.nav -or -iname \*.snm -or -iname \*~ \
-    -or -iname \*.bak -or  -iname \*.synctex.gz -or -name *.spl \) \
+    -or -iname \*.bak -or  -iname \*.synctex.gz -or -iname *.spl \) \
     -exec echo 'Deleting' {} \; -exec rm {} \;
 }
 
