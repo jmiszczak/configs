@@ -230,3 +230,6 @@ function purgeRC() {
 export OPENSSL_VERSION=3.5.0
 export LD_LIBRARY_PATH=$HOME/Local/openssl/$OPENSSL_VERSION/lib64:$LD_LIBRARY_PATH
 export PATH=$HOME/Local/openssl/$OPENSSL_VERSION/bin:$PATH
+
+# for using libs under /usr/local
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
