@@ -32,7 +32,8 @@ export PATH=$HOME/Local/qcl:$PATH
 # TeX Live 2023 - updated in 03/2023
 # TeX Live 2024 - installed on 14/08/2024
 # TeX Live 2025 - installed on 09/05/2025
-export TLVER=2025
+# TeX Live 2026 - installed on 10/05/2026
+export TLVER=2026
 export PATH=/home/jam/Local/texlive/$TLVER/bin/x86_64-linux:$PATH
 export MANPATH=/home/jam/Local/texlive/$TLVER/texmf-dist/doc/man:$MANPATH
 export INFOPATH=/home/jam/Local/texlive/$TLVER/texmf-dist/doc/info:$INFOPATH
@@ -209,6 +210,7 @@ addTeXpics() {
   fi 
 }
 
+# clean auxiliary LaTeX files
 cleanTeXfiles() {
   find . \( \
     -iname \*.log -or -iname \*.toc -or -iname \*.aux -or -iname \*.out \
@@ -216,6 +218,21 @@ cleanTeXfiles() {
     -or -iname \*.blg -or -iname \*.nav -or -iname \*.snm -or -iname \*~ \
     -or -iname \*.bak -or  -iname \*.synctex.gz -or -iname *.spl \) \
     -exec echo 'Deleting' {} \; -exec rm {} \;
+}
+
+# prepare tgz for arXiv
+createTgzForArxiv() {
+  if [ -z $1 ]; then
+    echo "[Error] Please provide .tex file!"
+    echo "Nothing added!"
+  else
+    lf=`basename $1 .tex`.log
+    fs=`cat $lf  | grep \<use | sed s/\<use\ //g | sed s/\>//g`
+    tar czvf `basename $1 .tex`.tgz $1 $fs
+    for f in $fs ; do 
+      echo "[INFO] Adding" $f
+    done
+  fi 
 }
 
 #
