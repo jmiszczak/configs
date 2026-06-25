@@ -188,6 +188,12 @@ ca() {
 
 ae() {
   . ~/VEnvs/$1/bin/activate
+  echo "[INFO] Activating virtual environement $VIRTUAL_ENV"
+}
+
+de() {
+  deactivate
+  echo "[INFO] Deactivating virtual environement $VIRTUAL_ENV"
 }
 
 #-------------------------------------------------------------------------------
