@@ -82,6 +82,7 @@ setlocal spell spelllang=en_us
 """"""""""""""""""""""""""""""""""""""""""""""""""
 set modeline
 set modelines=5
+colorscheme elflord
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " gvim settings
@@ -95,6 +96,7 @@ if has('gui_running')
 	map <ESC>o :browse confirm e<CR>
 	map <ESC>t :browse tabnew<CR>
 endif
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " for editing Drupal modules as php files
