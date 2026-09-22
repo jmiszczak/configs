@@ -147,9 +147,9 @@ placeMyApps() {
   wmctrl -r Thunderbird  -e 0,400,300,1600,1000
   wmctrl -r Mousepad  -e 0,400,300,1600,1000
   wmctrl -r Spyder -e 0,400,100,1800,1000
-  wmctrl -r gvim -e 0,50,50,1300,1000
+  wmctrl -r gvim -e 0,1200,160,1200,800
   wmctrl -r Chrome -e 0,1200,200,2000,1000;
-  wmctrl -r Brave -e 0,120,120,1600,1000;
+  wmctrl -r Brave -e 0,100,100,1800,1200;
 }
 
 #-------------------------------------------------------------------------------
