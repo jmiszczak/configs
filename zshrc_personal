@@ -1,0 +1,34 @@
+#
+# ln -s ~/Kuweta/configs/zshrc_personal ~/.zshrc_jam
+#
+
+
+cdpath=(. $HOME $HOME/Kuweta)
+
+#-------------------------------------------------------------------------------
+# aliases
+#-------------------------------------------------------------------------------
+
+# B&W MC
+alias mc='mc -b'
+
+# md for creating directories
+alias md='mkdir -p'
+
+# common commands
+alias p=python
+alias g='gvim --servername GVIM'
+alias gr='gvim --servername GVIM --remote-tab'
+
+
+ae() {
+  . ~/VEnvs/$1/bin/activate
+  echo "[INFO] Activating virtual environement $VIRTUAL_ENV"
+}
+
+de() {
+  deactivate
+  echo "[INFO] Deactivating virtual environement $VIRTUAL_ENV"
+}
+
+
